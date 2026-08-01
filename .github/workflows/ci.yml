@@ -56,10 +56,10 @@ jobs:
     - name: Test built site
       run: bundle exec rake htmlproofer
     timeout-minutes: 6
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && (!cancelled()) }}
   publish:
     runs-on: self-hosted
-    if: ${{ !cancelled() && (github.ref == 'refs/heads/main') }}
+    if: ${{ !cancelled() && (!cancelled() && (github.ref == 'refs/heads/main')) }}
     needs: build
     permissions:
       contents: write
